@@ -29,7 +29,7 @@ const main = async () => {
 
 
 
-     app.get('/test', async function (req, res) {
+    app.get('/testa', async function (req, res) {
         const pdf = await main();
         res.contentType("application/pdf");
         res.send(pdf);
