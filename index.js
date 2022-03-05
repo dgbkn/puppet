@@ -28,7 +28,7 @@ app.use(cors());
 
 const cloudloginandrenew = async () => {
     const browser = await puppeteer.launch({
-        headless: false, args: [
+       args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
         ],
