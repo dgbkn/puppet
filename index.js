@@ -32,10 +32,10 @@ async function closeBrowser(browser) {
 
 
 async function cloudloginandrenew() {
-    const { browser, page } = await startBrowser(true);
+    const { browser, page } = await startBrowser(false);
     page.setViewport({ width: 1366, height: 768 });
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36');
-    await page.setDefaultNavigationTimeout(0); 
+    // await page.setDefaultNavigationTimeout(0); 
 
     await page.goto("https://ccp.cloudaccess.net/index.php?rp=/login");
     await page.click('#inputEmail');
@@ -43,9 +43,8 @@ async function cloudloginandrenew() {
     await page.click('#inputPassword');
     await page.keyboard.type('@Anu123456');
     await page.click('#login');
-    await page.waitForNavigation({waitUntil: "domcontentloaded"});
-
-//     await page.waitForSelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup");
+    await page.waitForNavigation();
+    await page.waitForSelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup",{timeout: 50000});
 
     await page.evaluate(() => {
         document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
