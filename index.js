@@ -37,7 +37,10 @@ async function cloudloginandrenew() {
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36');
      await page.setDefaultNavigationTimeout(0); 
 
-    await page.goto("https://ccp.cloudaccess.net/index.php?rp=/login");
+    await page.goto("https://ccp.cloudaccess.net/index.php?rp=/login", {
+              waitUntil: "networkidle2",
+            });
+    // await page.waitForNavigation();
     await page.click('#inputEmail');
     await page.keyboard.type('martmast60@gmail.com');
     await page.click('#inputPassword');
@@ -51,13 +54,18 @@ async function cloudloginandrenew() {
     ]);
     // await page.waitForSelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup");
 
-    await page.evaluate(() => {
-        document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
-        setTimeout(() => {
-            document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
-        },1500);
+    // await page.evaluate(() => {
+    //     document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
+    //     setTimeout(() => {
+    //         document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
+    //     },1500);
         
-    });
+    // });
+
+    await page.click('#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup',{ clickCount: 2, delay: 1000  });
+
+    // await page.waitFor(3000);
+    // await page.click('#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup');
 
 
 
