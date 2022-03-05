@@ -67,10 +67,10 @@ async function cloudloginandrenew() {
 
 
 
-app.get('/cloudlogin', async function (req, res) {
-    const pdf = await cloudloginandrenew();
+app.get('/cloudRenew', async function (req, res) {
+    const ss = await cloudloginandrenew();
     res.contentType("image/png");
-    res.send(pdf);
+    res.send(ss);
 });
 
 
