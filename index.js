@@ -30,9 +30,12 @@ async function closeBrowser(browser) {
 }
 
 
+
 async function cloudloginandrenew() {
     const { browser, page } = await startBrowser(false);
     page.setViewport({ width: 1366, height: 768 });
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36');
+
     await page.goto("https://ccp.cloudaccess.net/index.php?rp=/login");
     await page.click('#inputEmail');
     await page.keyboard.type('martmast60@gmail.com');
@@ -41,11 +44,26 @@ async function cloudloginandrenew() {
     await page.click('#login');
     await page.waitForNavigation();
 
-    await page.click(RENEW_BTN);
+    await page.waitForSelector(RENEW_BTN);
+
+
+    function theRewnewFunc() {
+        document.querySelector(RENEW_BTN).click();
+        setTimeout(() => {
+            document.querySelector(RENEW_BTN).click();
+        },1500);
+    }
+
+
+    await page.evaluate(() => theRewnewFunc());
+
+
+
+    // await page.click(RENEW_BTN);
+    // await page.click(RENEW_BTN, {delay: 3000});
     await page.waitForNavigation();
-
-
-
+//  await page.waitForSelector('#show-notif > div > div > div.modal-body > h4');
+    
     const ss = await page.screenshot();
     return ss;
 }
