@@ -13,25 +13,34 @@ const puppeteer = require ('puppeteer');
 app.use(cors());
 
 
-const main = async () => {
-    const browser = await puppeteer.launch({args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-      ],});
-        const page = await browser.newPage();
-        await page.goto('https://google.com');
+// const main = async () => {
+//     const browser = await puppeteer.launch({headless: false,args: [
+//         '--no-sandbox',
+//         '--disable-setuid-sandbox',
+//       ],});
+//         const page = await browser.newPage();
+//         await page.goto('https://google.com');
     
-        const pdf = await page.pdf();
-        return pdf;
-     }
+//         const pdf = await page.pdf();
+//         return pdf;
+//      }
 
 
-
+     const cloudloginandrenew = async () => {
+        const browser = await puppeteer.launch({headless: false,args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+          ],});
+            const page = await browser.newPage();
+            await page.goto('https://google.com');
+        
+            const pdf = await page.pdf();
+            return pdf;
+         }
 
 
     app.get('/testa', async function (req, res) {
-        const pdf = await main();
-        res.contentType("application/pdf");
+        const pdf = await cloudloginandrenew();
         res.send(pdf);
 });
 
