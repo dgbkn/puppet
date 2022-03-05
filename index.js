@@ -44,13 +44,14 @@ async function cloudloginandrenew() {
     await page.click('#login');
     await page.waitForNavigation();
 
-    // await page.waitForSelector(RENEW_BTN);
+    await page.waitForSelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup");
 
     await page.evaluate(() => {
-        document.querySelector(RENEW_BTN).click();
+        document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
         setTimeout(() => {
-            document.querySelector(RENEW_BTN).click();
+            document.querySelector("#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup").click();
         },1500);
+        
     });
 
 
