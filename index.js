@@ -62,16 +62,18 @@ async function cloudloginandrenew() {
     await page.waitForNavigation();
 //  await page.waitForSelector('#show-notif > div > div > div.modal-body > h4');
     
-    const ss = await page.screenshot();
-    return ss;
+    const ss = await page.screenshot({path: 'stat.png'});
+    await browser.close();
+
+    return "";
 }
 
 
 
 app.get('/cloudRenew', async function (req, res) {
     const ss = await cloudloginandrenew();
-    res.contentType("image/png");
-    res.send(ss);
+    // res.contentType("image/png");
+    res.send("ok");
 });
 
 
