@@ -44,18 +44,14 @@ async function cloudloginandrenew() {
     await page.click('#login');
     await page.waitForNavigation();
 
-    await page.waitForSelector(RENEW_BTN);
+    // await page.waitForSelector(RENEW_BTN);
 
-
-    function theRewnewFunc() {
+    await page.evaluate(() => {
         document.querySelector(RENEW_BTN).click();
         setTimeout(() => {
             document.querySelector(RENEW_BTN).click();
         },1500);
-    }
-
-
-    await page.evaluate(() => theRewnewFunc());
+    });
 
 
 
